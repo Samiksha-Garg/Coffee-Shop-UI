@@ -2,16 +2,18 @@ import 'package:flutter/material.dart';
 import 'ingredientBar.dart';
 import 'prepModel.dart';
 import 'Nutrients.dart';
+import 'placeOrder.dart';
 
 class InformationBox extends StatelessWidget {
   const InformationBox({
     Key? key,
   }) : super(key: key);
 
+  Widget buildBottomSheet(BuildContext context) => PlaceOrder();
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      physics: null,
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
@@ -55,20 +57,31 @@ class InformationBox extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.all(10),
-                child: Container(
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: Color(0xff332724),
-                    borderRadius: BorderRadius.circular(30),
+                child: TextButton(
+                  onPressed: () {
+                    showModalBottomSheet(
+                      context: context,
+                      builder: buildBottomSheet,
+                    );
+                  },
+                  style: TextButton.styleFrom(
+                    padding: EdgeInsets.zero,
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(15),
-                    child: Center(
-                      child: Text(
-                        'Order Now',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
+                  child: Container(
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: Color(0xff332724),
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(15),
+                      child: Center(
+                        child: Text(
+                          'Order Now',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),
